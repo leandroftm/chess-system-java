@@ -10,6 +10,11 @@ public class Rook extends ChessPiece {
 	public Rook(Board board, Color color) {
 		super(board, color);
 	}
+	
+	private boolean canMove(Position position) {
+		ChessPiece p = (ChessPiece) getBoard().piece(position);
+		return p == null || p.getColor() != getColor();
+	}
 
 	@Override
 	public String toString() {
@@ -28,7 +33,7 @@ public class Rook extends ChessPiece {
 			mat[p.getRow()][p.getColumn()] = true;
 			p.setRow(p.getRow() - 1);
 		}
-		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p) && canMove(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 
@@ -38,7 +43,7 @@ public class Rook extends ChessPiece {
 			mat[p.getRow()][p.getColumn()] = true;
 			p.setColumn(p.getColumn() + 1);
 		}
-		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p) && canMove(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 
@@ -48,7 +53,7 @@ public class Rook extends ChessPiece {
 			mat[p.getRow()][p.getColumn()] = true;
 			p.setRow(p.getRow() + 1);
 		}
-		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p) && canMove(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 
@@ -58,7 +63,7 @@ public class Rook extends ChessPiece {
 			mat[p.getRow()][p.getColumn()] = true;
 			p.setColumn(p.getColumn() - 1);
 		}
-		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p) && canMove(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 
